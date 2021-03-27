@@ -5,13 +5,13 @@ import models.Time;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class InputScanner {
 
-    public static LinkedList<Service> parseFile(File file) throws IOException, InputException {
-        LinkedList<Service> inputList = new LinkedList<Service>();
+    public static ArrayList<Service> parseFile(File file) throws IOException, InputException {
+        ArrayList<Service> inputList = new ArrayList<Service>();
         FileReader fileReader = new FileReader(file);
         Scanner scanner = new Scanner(fileReader);
         while (scanner.hasNextLine()){
@@ -20,6 +20,7 @@ public class InputScanner {
                 inputList.add(service);
             }
         }
+        fileReader.close();
         return inputList;
     }
 
