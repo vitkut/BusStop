@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 public class OutputPrinter {
 
+    //Method write data to file output.txt
+    //If file isn't exists, method creates new file
     public static void printToFile(ArrayList<Service> inputList){
         ArrayList<Service> poshList = new ArrayList<Service>();
         ArrayList<Service> grottyList = new ArrayList<Service>();
@@ -18,9 +20,6 @@ public class OutputPrinter {
                 grottyList.add(s);
             }
         }
-
-
-
         try{
             File file = new File("output.txt");
             if(!file.exists()){

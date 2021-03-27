@@ -8,14 +8,14 @@ import java.util.*;
 
 public class Main {
 
+    //If any service longer than this variable, this service not be included
     public static Time LONG_TIME = null;
 
     public static void main(String[] args) {
         init();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the path to input file");
-        //String path = scanner.nextLine();
-        String path = "input.txt";
+        String path = scanner.nextLine();
         File file = new File(path);
         try {
             try {
@@ -23,19 +23,15 @@ public class Main {
                 Collections.sort(inputList);
                 inputList = removalOfIneffectiveServices(inputList);
                 OutputPrinter.printToFile(inputList);
-                for(Service s:inputList){
-                    System.out.println(s);
-                }
-
             } catch (InputException ex){
                 System.out.println(ex.getMessage());
             }
         } catch (IOException ex){
             System.out.println(ex.getMessage());
         }
-
     }
 
+    //Initialization of LONG_TIME variable
     private static void init(){
         try{
             LONG_TIME = new Time((byte) 0, (byte) 1, (byte) 0);
@@ -44,6 +40,9 @@ public class Main {
         }
     }
 
+    //Method gets sorted ArrayList of Services
+    //Ineffective Services will be removed
+    //Method returns effective ArrayList of Services
     private static ArrayList<Service> removalOfIneffectiveServices(ArrayList<Service> inputList) throws InputException{
         for(int i = 0; i < inputList.size(); i++){
             Service current = inputList.get(i);
@@ -82,9 +81,7 @@ public class Main {
                             inputList.remove(current);
                             i -=1;
                             break;
-                        } else {
                         }
-
                     }
                 } else {
                     break;

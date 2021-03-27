@@ -10,6 +10,8 @@ import java.util.Scanner;
 
 public class InputScanner {
 
+    //Method gets File
+    //Parses the file to ArrayList of Services
     public static ArrayList<Service> parseFile(File file) throws IOException, InputException {
         ArrayList<Service> inputList = new ArrayList<Service>();
         FileReader fileReader = new FileReader(file);
@@ -24,6 +26,7 @@ public class InputScanner {
         return inputList;
     }
 
+    //Method parses String to Service
     private static Service parseServiceString(String serviceString) throws InputException{
         String[] tempStrings = serviceString.split(" ");
         if (tempStrings.length > 3){

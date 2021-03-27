@@ -25,6 +25,7 @@ public class Time implements Comparable<Time>{
         return days;
     }
 
+    //Time format validation
     public void validation(byte hours, byte minutes) throws InputException{
         if(hours >= 24 || minutes >= 60){
             throw new InputException("Incorrect time format");
@@ -68,6 +69,8 @@ public class Time implements Comparable<Time>{
         return 0;
     }
 
+    //Method gets time as String
+    //Method returns Time
     public static Time parseTime(String str) throws InputException{
         if(str.length() != 5){
             throw new InputException("Incorrect time format: "+str);
@@ -79,6 +82,7 @@ public class Time implements Comparable<Time>{
         return time;
     }
 
+    //Method summarizes Time
     public static Time sum(Time t1, Time t2) throws InputException{
         byte hours = (byte) (t1.getHours()+t2.getHours());
         byte minutes = (byte) (t1.getMinutes()+t2.getMinutes());
@@ -94,6 +98,7 @@ public class Time implements Comparable<Time>{
         return new Time(days, hours, minutes);
     }
 
+    //Method subtracts Time
     public static Time subtr(Time t1, Time t2) throws InputException{
         byte hours = (byte) (t1.getHours()-t2.getHours());
         byte minutes = (byte) (t1.getMinutes()-t2.getMinutes());
