@@ -14,17 +14,14 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the path to input file");
-        //String path = scanner.nextLine();
-        String path = "input.txt";
+        String path = scanner.nextLine();
         File file = new File(path);
         try {
             ArrayList<Service> inputServices = InputScanner.parseFile(file);
             Collections.sort(inputServices);
             removalOfIneffectiveServices(inputServices);
+            OutputPrinter.printToFile(inputServices, file);
 
-            for(Service s:inputServices){
-                System.out.println(s);
-            }
         } catch (IOException ex){
             System.out.println(ex.getMessage());
         }
