@@ -9,37 +9,40 @@ public class OutputPrinter {
 
     //Method write data to file output.txt
     //If file isn't exists, method creates new file
-    public static void printToFile(ArrayList<Service> inputList){
-        ArrayList<Service> poshList = new ArrayList<Service>();
-        ArrayList<Service> grottyList = new ArrayList<Service>();
-        for(Service s:inputList){
-            if (s.getName().equals("Posh")){
-                poshList.add(s);
+    public static void printToFile(ArrayList<Service> outputServices, File file) throws IOException{
+        ArrayList<Service> poshServices = new ArrayList<>();
+        ArrayList<Service> grottyServices = new ArrayList<>();
+
+        for(Service s:outputServices){
+            if(s.getName().equals("Posh")){
+                poshServices.add(s);
             }
             if(s.getName().equals("Grotty")){
-                grottyList.add(s);
+                grottyServices.add(s);
             }
         }
-        try{
-            File file = new File("output.txt");
-            if(!file.exists()){
-                file.createNewFile();
+
+        String absPath = file.getAbsolutePath();
+        absPath = absPath.replace(file.getName(), "output.txt");
+        File outputFile = new File(absPath);
+        try(FileWriter fileWriter = new FileWriter(outputFile)) {
+            if (!outputFile.exists()){
+                if(outputFile.createNewFile()){
+                    System.out.println("Output file creates on "+outputFile.getAbsolutePath());
+                }
             }
-            FileWriter fileWriter = new FileWriter(file);
-            for(Service s:poshList){
+
+            for(Service s:poshServices){
                 fileWriter.write(s.toString()+"\n");
             }
             fileWriter.write("\n");
-            for(Service s:grottyList){
-                if(s.equals(grottyList.get(grottyList.size()-1))){
-                    fileWriter.write(s.toString());
-                } else {
-                    fileWriter.write(s.toString()+"\n");
+            for(Service s:grottyServices){
+                fileWriter.write(s.toString());
+                if(!grottyServices.get(grottyServices.size()-1).equals(s)){
+                    fileWriter.write("\n");
                 }
             }
             fileWriter.flush();
-        } catch (IOException ex){
-            System.out.println(ex.getMessage());
         }
     }
 }

@@ -1,40 +1,50 @@
 package models;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 public class Service implements Comparable<Service>{
 
     private String name;
-    private Time departureTime;
-    private Time arrivalTime;
+    private LocalDateTime departure;
+    private LocalDateTime arrival;
 
-    public Service(String name, Time departureTime, Time arrivalTime) {
+    public Service(String name, LocalDateTime departure, LocalDateTime arrival) {
         this.name = name;
-        this.departureTime = departureTime;
-        this.arrivalTime = arrivalTime;
+        this.departure = departure;
+        this.arrival = arrival;
     }
 
     public String getName() {
         return name;
     }
 
-    public Time getDepartureTime() {
-        return departureTime;
+    public LocalDateTime getDeparture() {
+        return departure;
     }
 
-    public Time getArrivalTime() {
-        return arrivalTime;
+    public LocalDateTime getArrival() {
+        return arrival;
     }
 
-    //Method returns time in travel
-    public Time getTravelTime() throws InputException{
-        return Time.subtr(arrivalTime, departureTime);
+    public LocalTime getTravelTime(){
+        LocalDateTime travelTime = arrival;
+        travelTime = travelTime.minusDays(departure.getDayOfMonth());
+        travelTime = travelTime.minusHours(departure.getHour());
+        travelTime = travelTime.minusMinutes(departure.getMinute());
+        LocalTime result = LocalTime.of(travelTime.getHour(), travelTime.getMinute());
+        return result;
+    }
+
+    @Override
+    public int compareTo(Service o) {
+        return this.departure.compareTo(o.departure);
     }
 
     @Override
     public String toString() {
-        return name+" "+departureTime+" "+arrivalTime;
-    }
-
-    public int compareTo(Service o) {
-        return this.departureTime.compareTo(o.departureTime);
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm");
+        return name+" "+departure.format(format)+" "+arrival.format(format);
     }
 }
