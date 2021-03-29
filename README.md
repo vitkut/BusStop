@@ -9,7 +9,7 @@ difficult to use the timetable because of following reasons:
   2. Some of the buses run faster than others. For a frequent bus traveler it is better to miss an earlier bus
 in order to catch a faster bus which departs later but reaches its destination sooner.
   3. The entries in the timetable are not necessarily in order of departure time.
-  4. 
+  
 ---Description---
 Given the information in the joint timetable, write a program to produce two modified timetables, one for
 Posh Bus Company and one for Grotty Bus Company, each satisfying the following requirements:
@@ -30,8 +30,8 @@ those of Posh Bus Company.
 
 ---Input format---
 The input file has the following format:
-<service>
-<service> …
+<service><\n>
+<service><\n> …
 <service><EOF>
 Each <service> record is on a separate line and will consist of:
   o The character string ‘Grotty’ or ‘Posh’ to indicate which company is running the service.
@@ -45,29 +45,29 @@ Posh 10:15 11:10
 ---Output format---
 The output timetables shall be in the same format as the input timetable, with the Posh Bus Company
 timetable first followed by a blank line and the Grotty Bus Company timetable:
-<posh_service>
-<posh_service> …
-<posh_service>
-<blank_line>
-<grotty_service>
-<grotty_service> …
+<posh_service><\n>
+<posh_service><\n> …
+<posh_service><\n>
+<blank_line><\n>
+<grotty_service><\n>
+<grotty_service><\n> …
 <grotty_service><EOF>
   
 ---Example input and output---
 Given the following data:
-Posh 10:15 11:10
-Posh 10:10 11:00
-Grotty 10:10 11:00
-Grotty 16:30 18:45
-Posh 12:05 12:30
-Grotty 12:30 13:25
-Grotty 12:45 13:25
-Posh 17:25 18:01
+Posh 10:15 11:10<\n>
+Posh 10:10 11:00<\n>
+Grotty 10:10 11:00<\n>
+Grotty 16:30 18:45<\n>
+Posh 12:05 12:30<\n>
+Grotty 12:30 13:25<\n>
+Grotty 12:45 13:25<\n>
+Posh 17:25 18:01<\n>
 
 Your program shall produce:
-Posh 10:10 11:00
-Posh 10:15 11:10
-Posh 12:05 12:30
-Posh 17:25 18:01
-
+Posh 10:10 11:00<\n>
+Posh 10:15 11:10<\n>
+Posh 12:05 12:30<\n>
+Posh 17:25 18:01<\n>
+<\n>
 Grotty 12:45 13:25
