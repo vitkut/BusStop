@@ -2,9 +2,7 @@ import models.Service;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Main {
@@ -25,7 +23,7 @@ public class Main {
         } catch (IOException ex){
             System.out.println(ex.getMessage());
         }
-
+        scanner.nextLine();
     }
 
     //Method gets sorted ArrayList of Services
